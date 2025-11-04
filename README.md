@@ -116,7 +116,7 @@ Base path: `/api`
 - Health check path: `/health`
 - Attach Postgres; set `DATABASE_URL` in service environment
 - Add all required env vars (see Backend .env above)
-- CMD is defined in Dockerfile: `npx prisma migrate deploy && node server.js`
+- CMD is defined in Dockerfile: `npx prisma db push && node server.js`
 - Verify logs and hit `https://<service>.onrender.com/health`
 
 Alternative (Native Node):

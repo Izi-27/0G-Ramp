@@ -12,4 +12,6 @@ COPY . ./
 RUN npx prisma generate
 
 EXPOSE 3001
-CMD sh -c "npx prisma migrate deploy && node server.js"
+# For Postgres-backed deployments, push the Prisma schema at startup.
+# If you later adopt migrations, switch to `prisma migrate deploy`.
+CMD sh -c "npx prisma db push && node server.js"

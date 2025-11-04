@@ -45,9 +45,6 @@ export default function OffRamp() {
     setPayoutMethod('bank')
   }
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text)
-  }
 
   return (
     <Layout>

@@ -1,4 +1,4 @@
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -13,11 +13,6 @@ import AnimatedParticles from "../components/ui/AnimatedParticles";
 
 export default function Landing() {
   const { scrollYProgress } = useScroll();
-  const scaleProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 

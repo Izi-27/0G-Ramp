@@ -154,3 +154,41 @@ Dockerfile behavior:
 
 ---
 For any issues, review backend logs and confirm environment variables, database connectivity, and provider settings. If you want me to convert the project to Postgres-native migrations, I can generate and commit them and switch startup to `prisma migrate deploy`.
+
+## Environment Variables Template (Copy/Paste)
+
+Paste the following into `backend/.env` and adjust values as needed:
+
+```
+# Server
+PORT=3001
+DATABASE_URL="postgresql://db_0grampdatabase_user:mYGdpV4H0tQM0cONKBZfTrqlpNdWudJX@dpg-d453ucripnbc73b0vk9g-a.oregon-postgres.render.com/db_0grampdatabase"
+# If TLS is required, add: ?sslmode=require
+# DATABASE_URL="postgresql://.../db_0grampdatabase?sslmode=require"
+
+# Chain / EVM
+OG_RPC_URL=
+OPERATOR_PRIVATE_KEY=
+USDC_ADDRESS=
+USDC_DECIMALS=6
+RAMP_VAULT_ADDRESS=
+
+# Storage (optional)
+OG_STORAGE_URL=
+OG_STORAGE_API_KEY=
+
+# Payments & webhooks
+PAYMENT_SECRET=
+
+# Off-ramp provider
+OFFRAMP_PROVIDER=mock
+OFFRAMP_API_KEY=
+OFFRAMP_BASE_URL=https://api.transak.com
+OFFRAMP_SECRET=
+OFFRAMP_NETWORK=ethereum
+OFFRAMP_CHAIN=ethereum
+OFFRAMP_TOKEN=USDC
+
+# CORS (optional; if you adopt env-driven CORS per guide)
+CORS_ORIGINS=https://<your-netlify-domain>
+```

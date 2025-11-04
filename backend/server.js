@@ -8,7 +8,25 @@ const rateLimit = require('express-rate-limit')
 const app = express()
 
 app.use(helmet())
-app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:5174'], credentials: true }))
+// CORS: allow local dev by default and optionally additional origins via CORS_ORIGINS env (comma-separated)
+const defaultOrigins = ['http://localhost:5173', 'http://localhost:5174']
+const extraOrigins = (process.env.CORS_ORIGINS || '')
+  .split(',')
+  .map(s => s.trim())
+  .filter(Boolean)
+  .map(url => url.replace(/\/$/, ''))
+const allowedOrigins = [...defaultOrigins, ...extraOrigins]
+
+app.use(cors({
+  origin: (origin, cb) => {
+    // Allow non-browser requests or same-origin
+    if (!origin) return cb(null, true)
+    const normalized = origin.replace(/\/$/, '')
+    const ok = allowedOrigins.includes(normalized)
+    cb(null, ok)
+  },
+  credentials: true,
+}))
 app.use(morgan('dev'))
 // Capture raw JSON body for webhook HMAC verification
 app.use(express.json({

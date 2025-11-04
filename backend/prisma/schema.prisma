@@ -27,6 +27,14 @@ model Session {
   token       String?
   status      String
   createdAt   DateTime      @default(now())
+  // Offramp/Onramp provider metadata
+  provider           String?
+  providerSessionId  String?
+  checkoutUrl        String?
+  currency           String?
+  country            String?
+  payoutMethod       String?
+  depositAddress     String?
   user        User          @relation(fields: [userId], references: [id])
   transactions Transaction[]
 }

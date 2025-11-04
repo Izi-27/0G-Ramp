@@ -10,7 +10,14 @@ const app = express()
 app.use(helmet())
 app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:5174'], credentials: true }))
 app.use(morgan('dev'))
-app.use(express.json())
+// Capture raw JSON body for webhook HMAC verification
+app.use(express.json({
+  verify: (req, res, buf) => {
+    try {
+      req.rawBody = buf.toString()
+    } catch {}
+  }
+}))
 
 const limiter = rateLimit({ windowMs: 60 * 1000, max: 120 })
 app.use(limiter)

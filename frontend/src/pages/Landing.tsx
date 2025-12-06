@@ -1,10 +1,10 @@
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
-import { FloatingElement } from "../components/ui/FloatingElement";
+import FloatingElement from "../components/ui/FloatingElement";
 import { GlowOrb } from "../components/ui/GlowOrb";
 import { CursorFollowEffect } from "../components/ui/CursorFollowEffect";
 import { AnimatedBackgroundGrid } from "../components/ui/AnimatedBackgroundGrid";
@@ -13,11 +13,11 @@ import AnimatedParticles from "../components/ui/AnimatedParticles";
 
 export default function Landing() {
   const { scrollYProgress } = useScroll();
-  const scaleProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
+  // const scaleProgress = useSpring(scrollYProgress, {
+  //   stiffness: 100,
+  //   damping: 30,
+  //   restDelta: 0.001,
+  // });
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -122,11 +122,11 @@ export default function Landing() {
       </motion.header>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 lg:px-12">
-        {/* 3D Floating Elements - Mobile Optimized */}
+      <section className="relative min-h-screen flex items-center justify-center px-6 lg:px-12 mt-5">
+        {/* 3D Floating Elements */}
         <FloatingElement
           className="top-1/4 left-10"
-          delay={0}
+          delay={0}  
           mobileHidden={true}
         />
         <FloatingElement

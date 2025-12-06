@@ -6,40 +6,56 @@ interface FloatingElementProps {
   size?: string;
   gradient?: boolean;
   mobileHidden?: boolean;
+  initialLoad?: boolean;
 }
 
-export function FloatingElement({
+const FloatingElement = ({
   delay = 0,
   className = "",
   size = "w-16 h-16",
   gradient = false,
   mobileHidden = false,
-}: FloatingElementProps) {
+  initialLoad = false,
+}: FloatingElementProps) => {
   const baseClasses = `${
     mobileHidden ? "hidden md:block" : ""
   } absolute ${size} ${
     gradient
-      ? "bg-linear-to-br from-accent/10 to-purple-600/10"
-      : "bg-accent/10"
-  } backdrop-blur-sm rounded-3xl border border-accent/20 ${className}`;
+      ? "bg-gradient-to-br from-[#FF4FD8]/20 to-purple-600/20"
+      : "bg-[#FF4FD8]/10"
+  } backdrop-blur-xl rounded-3xl border border-[#FF4FD8]/30 ${className}`;
 
   return (
     <motion.div
+      initial={
+        initialLoad
+          ? {
+              scale: 0,
+              opacity: 0,
+              rotate: -180,
+            }
+          : undefined
+      }
       animate={{
-        y: [0, -20, 0],
+        y: [0, -30, 0],
         rotate: [0, 180, 360],
-        scale: [1, 1.05, 1],
+        scale: [1, 1.1, 1],
+        opacity: 1,
       }}
       transition={{
         duration: 8 + delay,
         repeat: Infinity,
         ease: "easeInOut",
-        delay: delay,
+        delay: initialLoad ? delay + 1 : delay,
       }}
       className={baseClasses}
       style={{
-        boxShadow: "0 0 30px rgba(255, 79, 216, 0.15)",
+        boxShadow: gradient
+          ? "0 0 40px rgba(255, 79, 216, 0.3)"
+          : "0 0 30px rgba(255, 79, 216, 0.15)",
       }}
     />
   );
 }
+
+export default FloatingElement;

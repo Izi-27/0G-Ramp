@@ -144,8 +144,18 @@ export function InitialLoader({ onLoadComplete }: InitialLoaderProps) {
               initial={{ scale: 0, opacity: 0 }}
               animate={
                 isExpanding
-                  ? { scale: 50, opacity: 0, x: "-50vw", y: "-50vh" }
-                  : { scale: 1, opacity: 0.6, y: [0, -20, 0], rotate: [0, 180, 360] }
+                  ? {
+                      scale: 1,
+                      opacity: 0.6,
+                      y: [0, -20, 0],
+                      rotate: [0, 180, 360],
+                    }
+                  : {
+                      scale: 1,
+                      opacity: 0.6,
+                      y: [0, -20, 0],
+                      rotate: [0, 180, 360],
+                    }
               }
               transition={
                 isExpanding
@@ -165,14 +175,28 @@ export function InitialLoader({ onLoadComplete }: InitialLoaderProps) {
               initial={{ scale: 0, opacity: 0 }}
               animate={
                 isExpanding
-                  ? { scale: 50, opacity: 0, x: "50vw", y: "-50vh" }
-                  : { scale: 1, opacity: 0.6, y: [0, -25, 0], rotate: [0, -180, -360] }
+                  ? {
+                      scale: 1,
+                      opacity: 0.6,
+                      y: [0, -25, 0],
+                      rotate: [0, -180, -360],
+                    }
+                  : {
+                      scale: 1,
+                      opacity: 0.6,
+                      y: [0, -25, 0],
+                      rotate: [0, -180, -360],
+                    }
               }
               transition={
                 isExpanding
                   ? { duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.1 }
                   : {
-                      scale: { duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 },
+                      scale: {
+                        duration: 1.2,
+                        ease: [0.22, 1, 0.36, 1],
+                        delay: 0.2,
+                      },
                       opacity: { duration: 1.2, delay: 0.2 },
                       y: { duration: 7, repeat: Infinity, ease: "easeInOut" },
                       rotate: { duration: 7, repeat: Infinity, ease: "linear" },
@@ -186,14 +210,28 @@ export function InitialLoader({ onLoadComplete }: InitialLoaderProps) {
               initial={{ scale: 0, opacity: 0 }}
               animate={
                 isExpanding
-                  ? { scale: 50, opacity: 0, x: "0", y: "50vh" }
-                  : { scale: 1, opacity: 0.6, y: [0, -30, 0], rotate: [0, 360, 720] }
+                  ? {
+                      scale: 1,
+                      opacity: 0.6,
+                      y: [0, -30, 0],
+                      rotate: [0, 360, 720],
+                    }
+                  : {
+                      scale: 1,
+                      opacity: 0.6,
+                      y: [0, -30, 0],
+                      rotate: [0, 360, 720],
+                    }
               }
               transition={
                 isExpanding
                   ? { duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }
                   : {
-                      scale: { duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.4 },
+                      scale: {
+                        duration: 1.4,
+                        ease: [0.22, 1, 0.36, 1],
+                        delay: 0.4,
+                      },
                       opacity: { duration: 1.4, delay: 0.4 },
                       y: { duration: 8, repeat: Infinity, ease: "easeInOut" },
                       rotate: { duration: 8, repeat: Infinity, ease: "linear" },
@@ -207,14 +245,37 @@ export function InitialLoader({ onLoadComplete }: InitialLoaderProps) {
               initial={{ scale: 0, opacity: 0 }}
               animate={
                 isExpanding
-                  ? { scale: 45, opacity: 0, x: "-30vw", y: "30vh" }
-                  : { scale: 1, opacity: 0.5, y: [0, -15, 0], rotate: [0, 90, 180] }
+                  ? {
+                      scale: 1,
+                      opacity: 0.5,
+                      y: [0, -15, 0],
+                      rotate: [0, 90, 180],
+                    }
+                  : {
+                      scale: 1,
+                      opacity: 0.5,
+                      y: [0, -15, 0],
+                      rotate: [0, 90, 180],
+                    }
               }
               transition={
                 isExpanding
-                  ? { duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.05 }
+                  ? {
+                      scale: {
+                        duration: 1.1,
+                        ease: [0.22, 1, 0.36, 1],
+                        delay: 0.3,
+                      },
+                      opacity: { duration: 1.1, delay: 0.3 },
+                      y: { duration: 7, repeat: Infinity, ease: "easeInOut" },
+                      rotate: { duration: 7, repeat: Infinity, ease: "linear" },
+                    }
                   : {
-                      scale: { duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.3 },
+                      scale: {
+                        duration: 1.1,
+                        ease: [0.22, 1, 0.36, 1],
+                        delay: 0.3,
+                      },
                       opacity: { duration: 1.1, delay: 0.3 },
                       y: { duration: 7, repeat: Infinity, ease: "easeInOut" },
                       rotate: { duration: 7, repeat: Infinity, ease: "linear" },
@@ -228,17 +289,48 @@ export function InitialLoader({ onLoadComplete }: InitialLoaderProps) {
               initial={{ scale: 0, opacity: 0 }}
               animate={
                 isExpanding
-                  ? { scale: 55, opacity: 0, x: "40vw", y: "40vh" }
-                  : { scale: 1, opacity: 0.5, y: [0, -18, 0], rotate: [0, -90, -180] }
+                  ? {
+                      scale: 1,
+                      opacity: 0.5,
+                      y: [0, -18, 0],
+                      rotate: [0, -90, -180],
+                    }
+                  : {
+                      scale: 1,
+                      opacity: 0.5,
+                      y: [0, -18, 0],
+                      rotate: [0, -90, -180],
+                    }
               }
               transition={
                 isExpanding
-                  ? { duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.15 }
-                  : {
-                      scale: { duration: 1.3, ease: [0.22, 1, 0.36, 1], delay: 0.5 },
+                  ? {
+                      scale: {
+                        duration: 1.3,
+                        ease: [0.22, 1, 0.36, 1],
+                        delay: 0.5,
+                      },
                       opacity: { duration: 1.3, delay: 0.5 },
                       y: { duration: 6.5, repeat: Infinity, ease: "easeInOut" },
-                      rotate: { duration: 6.5, repeat: Infinity, ease: "linear" },
+                      rotate: {
+                        duration: 6.5,
+                        repeat: Infinity,
+                        ease: "linear",
+                      },
+                    }
+                  : {
+                      scale: {
+                        duration: 1.3,
+                        ease: [0.22, 1, 0.36, 1],
+                        delay: 0.5,
+                      },
+                      opacity: { duration: 1.3, delay: 0.5 },
+                      y: { duration: 6.5, repeat: Infinity, ease: "easeInOut" },
+                      rotate: {
+                        duration: 6.5,
+                        repeat: Infinity,
+                        ease: "linear",
+                      },
                     }
               }
               className="absolute top-1/2 left-1/4 w-18 h-18 bg-linear-to-br from-purple-600/20 to-[#FF4FD8]/20 backdrop-blur-xl rounded-3xl border border-[#FF4FD8]/30"
@@ -250,7 +342,9 @@ export function InitialLoader({ onLoadComplete }: InitialLoaderProps) {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={
-              isExpanding ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }
+              isExpanding
+                ? { opacity: 0, scale: 0.8 }
+                : { opacity: 1, scale: 1 }
             }
             transition={{
               duration: isExpanding ? 0.6 : 0.8,
@@ -338,7 +432,9 @@ export function InitialLoader({ onLoadComplete }: InitialLoaderProps) {
                   isExpanding ? { opacity: 0 } : { opacity: [0.5, 1, 0.5] }
                 }
                 transition={
-                  isExpanding ? { duration: 0.4 } : { duration: 2, repeat: Infinity }
+                  isExpanding
+                    ? { duration: 0.4 }
+                    : { duration: 2, repeat: Infinity }
                 }
               >
                 {progress >= 100
@@ -351,7 +447,9 @@ export function InitialLoader({ onLoadComplete }: InitialLoaderProps) {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={
-                isExpanding ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }
+                isExpanding
+                  ? { opacity: 0, scale: 0.8 }
+                  : { opacity: 1, scale: 1 }
               }
               transition={
                 isExpanding ? { duration: 0.4 } : { delay: 0.5, duration: 0.6 }

@@ -1,0 +1,23 @@
+# Reduce Docker build context when building backend service from repo root
+
+# Entire frontend and contracts (not needed for backend image)
+frontend/
+contracts/
+
+# Node modules and build artifacts
+node_modules/
+**/node_modules/
+**/dist/
+
+# VCS and misc
+.git/
+.github/
+.gitignore
+
+# Local env files and logs
+**/.env
+**/.env.*
+**/*.log
+
+# Docker compose (not needed in image)
+docker-compose.yml

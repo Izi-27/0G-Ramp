@@ -1,15 +1,17 @@
 FROM node:18-alpine
 WORKDIR /app
 
-# Install dependencies first
-COPY package.json package-lock.json ./
+# Install dependencies first (copy from backend subdir because build context is repo root)
+COPY backend/package.json backend/package-lock.json ./
 RUN npm ci --only=production && npm cache clean --force
 
-# Copy source code
-COPY . ./
+# Copy backend source code only
+COPY backend/ ./
 
-# Generate Prisma client and apply migrations
+# Generate Prisma client and apply schema on startup
 RUN npx prisma generate
 
 EXPOSE 3001
-CMD sh -c "npx prisma migrate deploy && node server.js"
+# For Postgres-backed deployments, push the Prisma schema at startup.
+# If you later adopt migrations, switch to `prisma migrate deploy`.
+CMD sh -c "npx prisma db push && node server.js"

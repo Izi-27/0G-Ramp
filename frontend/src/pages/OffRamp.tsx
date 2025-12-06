@@ -10,8 +10,11 @@ export default function OffRamp() {
   const [amount, setAmount] = useState('100')
   const [payoutMethod, setPayoutMethod] = useState('bank')
   const [depositRef, setDepositRef] = useState<string | null>(null)
+  const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState<string | null>(null)
+  const [currency, setCurrency] = useState('USD')
+  const [country, setCountry] = useState('US')
 
   const request = async () => {
     if (!address) return setMessage('Connect wallet first.')
@@ -21,9 +24,12 @@ export default function OffRamp() {
       const res = await requestOfframp({ 
         walletAddress: address, 
         amount: Number(amount), 
-        payoutMethod 
+        payoutMethod,
+        currency,
+        country,
       })
       setDepositRef(res.depositRef)
+      setCheckoutUrl(res.checkoutUrl || null)
       setMessage('Off-ramp request created successfully.')
     } catch (e: any) {
       setMessage(e.message)
@@ -39,9 +45,6 @@ export default function OffRamp() {
     setPayoutMethod('bank')
   }
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text)
-  }
 
   return (
     <Layout>
@@ -233,6 +236,42 @@ export default function OffRamp() {
                     </div>
                   </div>
 
+                  {/* Currency Selection */}
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-300">
+                      Currency
+                    </label>
+                    <select
+                      title='currency'
+                      value={currency}
+                      onChange={(e) => setCurrency(e.target.value)}
+                      className="w-full px-4 py-3 bg-black/50 border border-accent/20 rounded-xl text-white focus:outline-none focus:border-accent/40 transition-colors"
+                    >
+                      <option value="USD">🇺🇸 US Dollar (USD)</option>
+                      <option value="EUR">🇪🇺 Euro (EUR)</option>
+                      <option value="GBP">🇬🇧 British Pound (GBP)</option>
+                    </select>
+                  </div>
+
+                  {/* Country Selection */}
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-300">
+                      Country
+                    </label>
+                    <select
+                      title='country'
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                      className="w-full px-4 py-3 bg-black/50 border border-accent/20 rounded-xl text-white focus:outline-none focus:border-accent/40 transition-colors"
+                    >
+                      <option value="US">🇺🇸 United States</option>
+                      <option value="GB">🇬🇧 United Kingdom</option>
+                      <option value="EU">🇪🇺 European Union</option>
+                      <option value="IN">🇮🇳 India</option>
+                      <option value="BR">🇧🇷 Brazil</option>
+                    </select>
+                  </div>
+
                   {/* Action Button */}
                   <motion.button
                     whileHover={{ scale: 1.02 }}
@@ -355,7 +394,62 @@ export default function OffRamp() {
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
-                          onClick={() => copyToClipboard(depositRef)}
+                          onClick={() => depositRef && navigator.clipboard.writeText(depositRef)}
+                          className="ml-2 p-2 rounded-lg bg-purple-400/20 border border-purple-400/30 hover:bg-purple-400/30 text-purple-400 transition-colors"
+                        >
+                          <Icon icon="mdi:content-copy" className="text-sm" />
+                        </motion.button>
+                      </div>
+                    </div>
+                    <div className="text-xs text-gray-400 bg-purple-400/5 p-3 rounded-lg border border-purple-400/10">
+                      <p className="mb-2">
+                        <strong className="text-purple-400">Important:</strong> Include this reference in your USDC transfer to ensure proper processing.
+                      </p>
+                      <p>
+                        Send exactly <strong className="text-white">{amount} USDC</strong> to the vault address with this memo.
+                      </p>
+                    </div>
+                    <a href={checkoutUrl!} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 text-sm font-medium transition-colors">
+                      <Icon icon="mdi:open-in-new" />
+                      Open Provider Checkout
+                    </a>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Checkout URL */}
+              {checkoutUrl && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-black/40 backdrop-blur-xl rounded-2xl border border-green-400/30 p-6"
+                  style={{ boxShadow: '0 0 20px rgba(52, 211, 153, 0.2)' }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <motion.div 
+                      className="w-10 h-10 bg-linear-to-br from-green-400/20 to-emerald-600/20 backdrop-blur-xl rounded-lg flex items-center justify-center border border-green-400/30"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <Icon icon="mdi:link" className="text-lg text-green-400" />
+                    </motion.div>
+                    <h3 className="text-lg font-semibold text-white">
+                      Payout Checkout
+                    </h3>
+                  </div>
+                  <p className="text-sm text-gray-400 mb-4">
+                    Complete your payout using the provider checkout link:
+                  </p>
+                  <div className="space-y-3">
+                    <div className="bg-black/50 rounded-lg p-3 border border-purple-400/20">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-mono text-white break-all">
+                          {depositRef}
+                        </span>
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          onClick={() => depositRef && navigator.clipboard.writeText(depositRef)}
                           className="ml-2 p-2 rounded-lg bg-purple-400/20 border border-purple-400/30 hover:bg-purple-400/30 text-purple-400 transition-colors"
                         >
                           <Icon icon="mdi:content-copy" className="text-sm" />

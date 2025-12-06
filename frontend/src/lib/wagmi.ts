@@ -3,20 +3,20 @@ import { http, defineChain, type Chain } from 'viem'
 import { mainnet } from 'wagmi/chains'
 import { injected } from 'wagmi/connectors'
 
-// 0G Galileo testnet definition
-export const ogGalileo = defineChain({
-  id: 16602,
-  name: '0G Galileo Testnet',
-  network: 'ogGalileo',
-  nativeCurrency: { name: 'OG', symbol: 'OG', decimals: 18 },
+// 0G Mainnet definition
+export const ogMainnet = defineChain({
+  id: 16661,
+  name: '0G Mainnet',
+  network: 'ogMainnet',
+  nativeCurrency: { name: '0G', symbol: '0G', decimals: 18 },
   rpcUrls: {
-    default: { http: ['https://evmrpc-testnet.0g.ai'] },
-    public: { http: ['https://evmrpc-testnet.0g.ai'] },
+    default: { http: ['https://evmrpc.0g.ai'] },
+    public: { http: ['https://evmrpc.0g.ai'] },
   },
   blockExplorers: {
-    default: { name: '0G Explorer', url: 'https://explorer-testnet.0g.ai' },
+    default: { name: '0G ChainScan', url: 'https://chainscan.0g.ai' },
   },
-  testnet: true,
+  testnet: false,
 })
 
 export const localhost = defineChain({
@@ -31,10 +31,10 @@ export const localhost = defineChain({
   testnet: true,
 })
 
-const chains = [ogGalileo, localhost, mainnet] as const satisfies readonly [Chain, ...Chain[]]
+const chains = [ogMainnet, localhost, mainnet] as const satisfies readonly [Chain, ...Chain[]]
 
 const transports = {
-  [ogGalileo.id]: http(ogGalileo.rpcUrls.default.http[0]!),
+  [ogMainnet.id]: http(ogMainnet.rpcUrls.default.http[0]!),
   [localhost.id]: http(localhost.rpcUrls.default.http[0]!),
   [mainnet.id]: http(mainnet.rpcUrls.default.http[0]!),
 } as const

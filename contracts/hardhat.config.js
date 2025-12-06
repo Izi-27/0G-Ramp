@@ -20,6 +20,11 @@ module.exports = {
       chainId: 16602,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
     },
+    ogMainnet: {
+      url: process.env.OG_RPC_URL || 'https://evmrpc.0g.ai',
+      chainId: 16661,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+    },
   },
   etherscan: process.env.ETHERSCAN_API_KEY ? { apiKey: process.env.ETHERSCAN_API_KEY } : {},
 }

@@ -2,7 +2,7 @@ import { useReadContract } from 'wagmi'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import type { Abi } from 'viem'
-import { ogGalileo } from '../lib/wagmi'
+import { ogMainnet } from '../lib/wagmi'
 
 const adminAddress = import.meta.env.VITE_RAMP_ADMIN_ADDRESS || '0x0601ED877D78dc4BE53cDd25A0dAfF3F6d261640'
 const adminAbi: Abi = [
@@ -20,7 +20,7 @@ export default function ContractInfo() {
     address: adminAddress as `0x${string}`,
     abi: adminAbi,
     functionName: 'feeBps',
-    chainId: ogGalileo.id,
+    chainId: ogMainnet.id,
   })
 
   const formatAddress = (address: string) => {
@@ -73,8 +73,8 @@ export default function ContractInfo() {
             </div>
             <div className="text-gray-300">
               <div className="flex items-center justify-between">
-                <span>0G Galileo Testnet</span>
-                <span className="text-purple-400 font-mono text-sm">16602</span>
+                <span>0G Mainnet</span>
+                <span className="text-purple-400 font-mono text-sm">16661</span>
               </div>
             </div>
           </div>

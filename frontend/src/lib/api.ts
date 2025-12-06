@@ -22,14 +22,14 @@ export async function createOnrampSession(params: { walletAddress: string; fiatA
   return res.json() as Promise<{ sessionId: number; clientToken: string; paymentUrl: string }>
 }
 
-export async function requestOfframp(params: { walletAddress: string; amount: number; payoutMethod: string }) {
+export async function requestOfframp(params: { walletAddress: string; amount: number; payoutMethod: string; currency?: string; country?: string }) {
   const res = await fetch(`${API_BASE}/api/offramp/request`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(params),
   })
   if (!res.ok) throw new Error('Failed to request payout')
-  return res.json() as Promise<{ sessionId: number; depositRef: string }>
+  return res.json() as Promise<{ sessionId: number; depositRef: string; checkoutUrl?: string }>
 }
 
 export async function simulateWebhook(sessionId: number, status: 'success' | 'failed') {
